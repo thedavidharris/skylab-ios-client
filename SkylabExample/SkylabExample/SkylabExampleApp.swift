@@ -20,12 +20,6 @@ struct SkylabExampleApp: App {
     }
 }
 
-struct SkylabExampleApp_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
-    }
-}
-
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         let config = SkylabConfig()
@@ -34,5 +28,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             print("Start completion handler called")
         }
         return true
+    }
+}
+
+extension SkylabClient {
+    func getVariant(_ flagKey: String) -> String? {
+        getVariant(flagKey, fallback: nil)
     }
 }

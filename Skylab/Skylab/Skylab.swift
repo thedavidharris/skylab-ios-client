@@ -12,15 +12,15 @@ public class Skylab {
     static var instances: [String: SkylabClient] = [:]
 
     public static func getInstance() -> SkylabClient? {
-        return getInstance(name: AMPSkylabConfigDefaults.InstanceName)
+        return getInstance(AMPSkylabConfigDefaults.InstanceName)
     }
 
-    public static func getInstance(name: String) -> SkylabClient? {
+    public static func getInstance(_ name: String) -> SkylabClient? {
         return instances[name]
     }
 
     public static func initialize(apiKey: String, config: SkylabConfig) -> SkylabClient {
-        let instance = getInstance(name: config.instanceName)
+        let instance = getInstance(config.instanceName)
         if (instance != nil) {
             return instance!
         }

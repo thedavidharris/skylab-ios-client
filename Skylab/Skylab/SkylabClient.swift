@@ -10,9 +10,9 @@ import Foundation
 public protocol SkylabClient {
     func start(user: SkylabUser, completion: (() -> Void)?) -> Void
     func setUser(user: SkylabUser, completion: (() -> Void)?) -> Void
-    func getVariant(flagKey: String, fallback: String?) -> String?
+    func getVariant(_ flagKey: String, fallback: String?) -> String?
     func refetchAll(completion: (() -> Void)?) -> Void
-    func setIdentityProvider(identityProvider: IdentityProvider) -> SkylabClient
+    func setIdentityProvider(_ identityProvider: IdentityProvider) -> SkylabClient
 }
 
 let EnrollmentIdKey: String = "com.amplitude.flags.enrollmentId"
@@ -106,11 +106,11 @@ public class SkylabClientImpl : SkylabClient {
         }
     }
 
-    public func getVariant(flagKey: String, fallback: String? = nil) -> String? {
+    public func getVariant(_ flagKey: String, fallback: String? = nil) -> String? {
         return self.storage.get(key: flagKey) ?? fallback ?? self.config.fallbackVariant
     }
 
-    public func setIdentityProvider(identityProvider: IdentityProvider) -> SkylabClient {
+    public func setIdentityProvider(_ identityProvider: IdentityProvider) -> SkylabClient {
         self.identityProvider = identityProvider
         return self
     }

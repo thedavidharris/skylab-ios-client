@@ -7,10 +7,17 @@
 
 import SwiftUI
 
+import Skylab
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        let variant = Skylab.getInstance()?.getVariant("ios-demo");
+        if (variant == "on") {
+            Text("Hello, world! ios-demo is \(variant ?? "(nil)")")
+                .padding()
+        } else {
+            Text("Hello, world!").padding()
+        }
     }
 }
 
