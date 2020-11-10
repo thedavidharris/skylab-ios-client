@@ -12,22 +12,24 @@ public protocol SkylabClient {
     func setUser(user: SkylabUser, completion: (() -> Void)?) -> Void
     func getVariant(flagKey: String, fallback: String?) -> String?
     func refetchAll(completion: (() -> Void)?) -> Void
-    func setIdentityProvider(identityProvider: SkylabIdentityProvider) -> SkylabClient
+    func setIdentityProvider(identityProvider: IdentityProvider) -> SkylabClient
 }
 
+let EnrollmentIdKey: String = "com.amplitude.flags.enrollmentId"
 
 public class SkylabClientImpl : SkylabClient {
 
     internal let apiKey: String
-    internal let storage: SkylabStorage
+    internal let storage: Storage
     internal let config: SkylabConfig
     internal var userId: String?
     internal var user: SkylabUser?
-    internal var identityProvider: SkylabIdentityProvider?
+    internal var identityProvider: IdentityProvider?
+    internal var enrollmentId: String?
 
     init(apiKey: String, config: SkylabConfig) {
         self.apiKey = apiKey
-        self.storage = SkylabInMemoryStorage()
+        self.storage = UserDefaultsStorage(apiKey: apiKey)
         self.config = config
         self.userId = nil
         self.user = nil
@@ -37,6 +39,7 @@ public class SkylabClientImpl : SkylabClient {
 
     public func start(user: SkylabUser, completion: (() -> Void)? = nil) -> Void {
         self.user = user
+        self.loadFromStorage()
         self.fetchAll(completion: completion)
     }
 
@@ -88,6 +91,7 @@ public class SkylabClientImpl : SkylabClient {
                         for (key, value) in flags {
                             let _ = self.storage.put(key: key, value: value)
                         }
+                        self.storage.save()
                         print("[Skylab] Fetched all: \(flags)")
                     } catch {
                         print("[Skylab] Error during JSON serialization: \(error.localizedDescription)")
@@ -106,8 +110,28 @@ public class SkylabClientImpl : SkylabClient {
         return self.storage.get(key: flagKey) ?? fallback ?? self.config.fallbackVariant
     }
 
-    public func setIdentityProvider(identityProvider: SkylabIdentityProvider) -> SkylabClient {
+    public func setIdentityProvider(identityProvider: IdentityProvider) -> SkylabClient {
         self.identityProvider = identityProvider
         return self
     }
+
+    func loadFromStorage() -> Void {
+        self.loadEnrollmentId()
+        self.storage.load()
+        print("[Skylab] loaded \(self.storage.getAll())")
+    }
+
+    func loadEnrollmentId() -> Void {
+        enrollmentId = UserDefaults.standard.string(forKey: EnrollmentIdKey);
+        if (enrollmentId == nil) {
+            enrollmentId = generateEnrollmentId()
+            print("generated \(enrollmentId!)")
+            UserDefaults.standard.set(enrollmentId, forKey: EnrollmentIdKey)
+        }
+    }
+}
+
+func generateEnrollmentId() -> String {
+    let letters = "abcdefghijklmnopqrstuvwxyz0123456789"
+    return String((0..<25).map{ _ in letters.randomElement()! })
 }

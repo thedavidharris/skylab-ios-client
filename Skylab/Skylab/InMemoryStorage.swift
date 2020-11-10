@@ -1,5 +1,5 @@
 //
-//  SkylabInMemoryStorage.swift
+//  InMemoryStorage.swift
 //  Skylab
 //
 //  Copyright © 2020 Amplitude. All rights reserved.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SkylabInMemoryStorage: SkylabStorage {
+class InMemoryStorage: Storage {
     var map: [String:String] = [:]
 
     func put(key: String, value: String) -> String? {
@@ -23,6 +23,14 @@ class SkylabInMemoryStorage: SkylabStorage {
     func clear() {
         map = [:]
     }
+
+    func getAll() -> [String:String] {
+        let copy = map
+        return copy
+    }
+    
+    func load() {}
+    func save() {}
     
     
 }

@@ -1,5 +1,5 @@
 //
-//  SkylabIdentityProvider.swift
+//  IdentityProvider.swift
 //  Skylab
 //
 //  Copyright © 2020 Amplitude. All rights reserved.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol SkylabIdentityProvider {
+public protocol IdentityProvider {
     func getDeviceId() -> String
     func getUserId() -> String
 }

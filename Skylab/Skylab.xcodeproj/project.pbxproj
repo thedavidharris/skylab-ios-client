@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E94EFF6524F07BFF00F3BF73 /* SkylabStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EFF6424F07BFF00F3BF73 /* SkylabStorage.swift */; };
+		E94EFF6524F07BFF00F3BF73 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EFF6424F07BFF00F3BF73 /* Storage.swift */; };
 		E94EFF6724F0898F00F3BF73 /* SkylabConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EFF6624F0898F00F3BF73 /* SkylabConfig.swift */; };
-		E94EFF6B24F0A17F00F3BF73 /* SkylabInMemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EFF6A24F0A17F00F3BF73 /* SkylabInMemoryStorage.swift */; };
+		E94EFF6B24F0A17F00F3BF73 /* InMemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EFF6A24F0A17F00F3BF73 /* InMemoryStorage.swift */; };
 		E96746EF2550D62D00B0C8FA /* SkylabUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96746EE2550D62D00B0C8FA /* SkylabUser.swift */; };
 		E96746F32550D88300B0C8FA /* SkylabClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96746F22550D88300B0C8FA /* SkylabClient.swift */; };
-		E96746F72550D9F900B0C8FA /* SkylabIdentityProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96746F62550D9F900B0C8FA /* SkylabIdentityProvider.swift */; };
+		E96746F72550D9F900B0C8FA /* IdentityProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96746F62550D9F900B0C8FA /* IdentityProvider.swift */; };
+		E96F61A2255B046B00DA5B71 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F61A1255B046B00DA5B71 /* UserDefaultsStorage.swift */; };
 		E9CC96F92559C4C500A90593 /* Skylab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC96F82559C4C500A90593 /* Skylab.swift */; };
 		E9EC6FB724F06D060013C6A7 /* Skylab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9EC6FAD24F06D060013C6A7 /* Skylab.framework */; };
 		E9EC6FBC24F06D060013C6A7 /* SkylabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC6FBB24F06D060013C6A7 /* SkylabTests.swift */; };
@@ -30,12 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E94EFF6424F07BFF00F3BF73 /* SkylabStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylabStorage.swift; sourceTree = "<group>"; };
+		E94EFF6424F07BFF00F3BF73 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		E94EFF6624F0898F00F3BF73 /* SkylabConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylabConfig.swift; sourceTree = "<group>"; };
-		E94EFF6A24F0A17F00F3BF73 /* SkylabInMemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylabInMemoryStorage.swift; sourceTree = "<group>"; };
+		E94EFF6A24F0A17F00F3BF73 /* InMemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryStorage.swift; sourceTree = "<group>"; };
 		E96746EE2550D62D00B0C8FA /* SkylabUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylabUser.swift; sourceTree = "<group>"; };
 		E96746F22550D88300B0C8FA /* SkylabClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylabClient.swift; sourceTree = "<group>"; };
-		E96746F62550D9F900B0C8FA /* SkylabIdentityProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylabIdentityProvider.swift; sourceTree = "<group>"; };
+		E96746F62550D9F900B0C8FA /* IdentityProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityProvider.swift; sourceTree = "<group>"; };
+		E96F61A1255B046B00DA5B71 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		E9CC96F82559C4C500A90593 /* Skylab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skylab.swift; sourceTree = "<group>"; };
 		E9EC6FAD24F06D060013C6A7 /* Skylab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Skylab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9EC6FB024F06D060013C6A7 /* Skylab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Skylab.h; sourceTree = "<group>"; };
@@ -91,9 +93,10 @@
 				E96746F22550D88300B0C8FA /* SkylabClient.swift */,
 				E94EFF6624F0898F00F3BF73 /* SkylabConfig.swift */,
 				E96746EE2550D62D00B0C8FA /* SkylabUser.swift */,
-				E94EFF6424F07BFF00F3BF73 /* SkylabStorage.swift */,
-				E94EFF6A24F0A17F00F3BF73 /* SkylabInMemoryStorage.swift */,
-				E96746F62550D9F900B0C8FA /* SkylabIdentityProvider.swift */,
+				E94EFF6424F07BFF00F3BF73 /* Storage.swift */,
+				E94EFF6A24F0A17F00F3BF73 /* InMemoryStorage.swift */,
+				E96746F62550D9F900B0C8FA /* IdentityProvider.swift */,
+				E96F61A1255B046B00DA5B71 /* UserDefaultsStorage.swift */,
 			);
 			path = Skylab;
 			sourceTree = "<group>";
@@ -217,13 +220,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E96F61A2255B046B00DA5B71 /* UserDefaultsStorage.swift in Sources */,
 				E96746EF2550D62D00B0C8FA /* SkylabUser.swift in Sources */,
 				E96746F32550D88300B0C8FA /* SkylabClient.swift in Sources */,
-				E94EFF6B24F0A17F00F3BF73 /* SkylabInMemoryStorage.swift in Sources */,
-				E94EFF6524F07BFF00F3BF73 /* SkylabStorage.swift in Sources */,
+				E94EFF6B24F0A17F00F3BF73 /* InMemoryStorage.swift in Sources */,
+				E94EFF6524F07BFF00F3BF73 /* Storage.swift in Sources */,
 				E9CC96F92559C4C500A90593 /* Skylab.swift in Sources */,
 				E94EFF6724F0898F00F3BF73 /* SkylabConfig.swift in Sources */,
-				E96746F72550D9F900B0C8FA /* SkylabIdentityProvider.swift in Sources */,
+				E96746F72550D9F900B0C8FA /* IdentityProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

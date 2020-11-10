@@ -7,8 +7,11 @@
 
 import Foundation
 
-protocol SkylabStorage {
+protocol Storage {
     func put(key: String, value: String) -> String?
     func get(key: String) -> String?
     func clear()
+    func getAll() -> [String:String]
+    func load()
+    func save()
 }
