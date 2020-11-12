@@ -3,31 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9983EDD255DE03400EB2F7F /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = E9983EDC255DE03400EB2F7F /* Amplitude */; };
 		E9CC970B2559D3E200A90593 /* SkylabExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC970A2559D3E200A90593 /* SkylabExampleApp.swift */; };
 		E9CC970D2559D3E200A90593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC970C2559D3E200A90593 /* ContentView.swift */; };
 		E9CC970F2559D3E600A90593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9CC970E2559D3E600A90593 /* Assets.xcassets */; };
 		E9CC97122559D3E600A90593 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9CC97112559D3E600A90593 /* Preview Assets.xcassets */; };
-		E9CC971C2559D4DA00A90593 /* Skylab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CC971B2559D4DA00A90593 /* Skylab.framework */; };
-		E9CC971D2559D4DA00A90593 /* Skylab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E9CC971B2559D4DA00A90593 /* Skylab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E9EA0E71255CA850009EF217 /* Skylab in Frameworks */ = {isa = PBXBuildFile; productRef = E9EA0E70255CA850009EF217 /* Skylab */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E9CC971E2559D4DB00A90593 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E9CC971D2559D4DA00A90593 /* Skylab.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E9CC97072559D3E200A90593 /* SkylabExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkylabExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,7 +22,6 @@
 		E9CC970E2559D3E600A90593 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9CC97112559D3E600A90593 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E9CC97132559D3E600A90593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9CC971B2559D4DA00A90593 /* Skylab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Skylab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +29,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9CC971C2559D4DA00A90593 /* Skylab.framework in Frameworks */,
+				E9983EDD255DE03400EB2F7F /* Amplitude in Frameworks */,
+				E9EA0E71255CA850009EF217 /* Skylab in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +77,6 @@
 		E9CC971A2559D4DA00A90593 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E9CC971B2559D4DA00A90593 /* Skylab.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -106,13 +91,16 @@
 				E9CC97032559D3E200A90593 /* Sources */,
 				E9CC97042559D3E200A90593 /* Frameworks */,
 				E9CC97052559D3E200A90593 /* Resources */,
-				E9CC971E2559D4DB00A90593 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SkylabExample;
+			packageProductDependencies = (
+				E9EA0E70255CA850009EF217 /* Skylab */,
+				E9983EDC255DE03400EB2F7F /* Amplitude */,
+			);
 			productName = SkylabExample;
 			productReference = E9CC97072559D3E200A90593 /* SkylabExample.app */;
 			productType = "com.apple.product-type.application";
@@ -140,6 +128,9 @@
 				Base,
 			);
 			mainGroup = E9CC96FE2559D3E200A90593;
+			packageReferences = (
+				E96F61CB255C4FC100DA5B71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+			);
 			productRefGroup = E9CC97082559D3E200A90593 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -356,6 +347,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E96F61CB255C4FC100DA5B71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E9983EDC255DE03400EB2F7F /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E96F61CB255C4FC100DA5B71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
+		};
+		E9EA0E70255CA850009EF217 /* Skylab */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Skylab;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E9CC96FF2559D3E200A90593 /* Project object */;
 }

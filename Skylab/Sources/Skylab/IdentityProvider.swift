@@ -9,5 +9,5 @@ import Foundation
 
 public protocol IdentityProvider {
     func getDeviceId() -> String
-    func getUserId() -> String
+    func getUserId() -> String?
 }

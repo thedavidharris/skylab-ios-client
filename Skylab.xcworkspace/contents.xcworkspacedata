@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SkylabExample/SkylabExample.xcodeproj">
+      location = "group:Skylab">
    </FileRef>
    <FileRef
-      location = "container:Skylab/Skylab.xcodeproj">
+      location = "group:SkylabExample/SkylabExample.xcodeproj">
    </FileRef>
 </Workspace>

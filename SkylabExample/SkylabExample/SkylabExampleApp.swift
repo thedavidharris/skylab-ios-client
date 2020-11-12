@@ -8,6 +8,7 @@
 import SwiftUI
 
 import Skylab
+import Amplitude
 
 
 @main
@@ -22,17 +23,17 @@ struct SkylabExampleApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+
+        let amplitude = Amplitude.instance();
+        amplitude.initializeApiKey("a6dd847b9d2f03c816d4f3f8458cdc1d")
+        amplitude.setUserId("test-user")
+
         let config = SkylabConfig()
         let client: SkylabClient = Skylab.initialize(apiKey: "client-IAxMYws9vVQESrrK88aTcToyqMxiiJoR", config: config)
-        client.start(user: SkylabUser(userId: "test-user")) {
+        client.setIdentityProvider(AmplitudeIdentityProvider(amplitude))
+        client.start(user: SkylabUser()) {
             print("Start completion handler called")
         }
         return true
-    }
-}
-
-extension SkylabClient {
-    func getVariant(_ flagKey: String) -> String? {
-        getVariant(flagKey, fallback: nil)
     }
 }
