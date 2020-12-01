@@ -19,7 +19,7 @@ public class AmplitudeIdentityProvider : IdentityProvider {
         self.initialized = false
     }
 
-    public func getDeviceId() -> String {
+    public func getDeviceId() -> String? {
         waitForAmplitudeInitialized()
         return self.amplitude.getDeviceId()
     }

@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol IdentityProvider {
-    func getDeviceId() -> String
+    func getDeviceId() -> String?
     func getUserId() -> String?
 }
