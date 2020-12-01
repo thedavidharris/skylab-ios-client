@@ -1,17 +1,33 @@
+//
+//  SkylabTests.swift
+//  SkylabTests
+//
+//  Created by Curtis Liu on 12/3/20.
+//
+
 import XCTest
 @testable import Skylab
 
-final class SkylabTests: XCTestCase {
-    func testInitialize() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        let client:SkylabClientImpl = Skylab.initialize(apiKey: "apiKey", config: SkylabConfig(instanceName: "testInstance")) as! SkylabClientImpl
-        XCTAssertEqual(client.apiKey, "apiKey")
-        XCTAssertEqual(client.config.instanceName, "testInstance")
+class SkylabTests: XCTestCase {
+
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    static var allTests = [
-        ("testInitialize", testInitialize),
-    ]
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testExample() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+
 }

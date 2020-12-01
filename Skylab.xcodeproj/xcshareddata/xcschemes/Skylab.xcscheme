@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Skylab::SkylabPackageTests::ProductTarget"
-               BuildableName = "SkylabPackageTests"
-               BlueprintName = "SkylabPackageTests"
+               BlueprintIdentifier = "E914960E25796DA800C64B38"
+               BuildableName = "Skylab.framework"
+               BlueprintName = "Skylab"
                ReferencedContainer = "container:Skylab.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E914961725796DA800C64B38"
+               BuildableName = "SkylabTests.xctest"
+               BlueprintName = "SkylabTests"
+               ReferencedContainer = "container:Skylab.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -50,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Skylab::SkylabPackageTests::ProductTarget"
-            BuildableName = "SkylabPackageTests"
-            BlueprintName = "SkylabPackageTests"
+            BlueprintIdentifier = "E914960E25796DA800C64B38"
+            BuildableName = "Skylab.framework"
+            BlueprintName = "Skylab"
             ReferencedContainer = "container:Skylab.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

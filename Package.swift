@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Skylab",
+    name: "skylab-ios-client",
     platforms: [
         .iOS(.v10),
     ],
@@ -23,9 +23,13 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Skylab",
-            dependencies: ["Amplitude"]),
+            dependencies: ["Amplitude"],
+            path: "Sources/Skylab",
+            exclude: ["Info.plist"]),
         .testTarget(
             name: "SkylabTests",
-            dependencies: ["Skylab"]),
+            dependencies: ["Skylab"],
+            path: "Tests/SkylabTests",
+            exclude: ["Info.plist"]),
     ]
 )
