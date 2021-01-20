@@ -8,15 +8,15 @@
 import Foundation
 
 class InMemoryStorage: Storage {
-    var map: [String:String] = [:]
+    var map: [String:Variant] = [:]
 
-    func put(key: String, value: String) -> String? {
-        let oldValue = map[key]
+    func put(key: String, value: Variant) -> Variant? {
+        let oldValue = self.get(key: key)
         map[key] = value
         return oldValue
     }
 
-    func get(key: String) -> String? {
+    func get(key: String) -> Variant? {
         return map[key]
     }
 
@@ -24,7 +24,7 @@ class InMemoryStorage: Storage {
         map = [:]
     }
 
-    func getAll() -> [String:String] {
+    func getAll() -> [String:Variant] {
         let copy = map
         return copy
     }

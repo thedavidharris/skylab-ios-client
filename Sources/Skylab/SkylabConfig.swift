@@ -10,16 +10,16 @@ import Foundation
 public struct SkylabConfig {
     public let debug: Bool
     public let debugEnrollmentRequests: Bool
-    public let fallbackVariant: String?
-    public let initialFlags: [String: String]
+    public let fallbackVariant: Variant?
+    public let initialFlags: [String: Variant]
     public let instanceName: String
     public let serverUrl: String
 
     public init(
         debug: Bool = AMPSkylabConfigDefaults.Debug,
         debugEnrollmentRequests: Bool = AMPSkylabConfigDefaults.DebugEnrollmentRequests,
-        fallbackVariant: String? = AMPSkylabConfigDefaults.FallbackVariant,
-        initialFlags: [String: String] = AMPSkylabConfigDefaults.InitialFlags,
+        fallbackVariant: Variant? = AMPSkylabConfigDefaults.FallbackVariant,
+        initialFlags: [String: Variant] = AMPSkylabConfigDefaults.InitialFlags,
         instanceName: String = AMPSkylabConfigDefaults.InstanceName,
         serverUrl: String = AMPSkylabConfigDefaults.ServerUrl
     ) {
@@ -35,8 +35,8 @@ public struct SkylabConfig {
 public struct AMPSkylabConfigDefaults {
     public static let Debug: Bool = false
     public static let DebugEnrollmentRequests: Bool = false
-    public static let FallbackVariant: String? = nil
-    public static let InitialFlags: [String: String] = [:]
+    public static let FallbackVariant: Variant? = nil
+    public static let InitialFlags: [String: Variant] = [:]
     public static let InstanceName: String = ""
     public static let ServerUrl: String = "https://api.lab.amplitude.com"
 }

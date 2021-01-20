@@ -10,10 +10,20 @@ import Foundation
 public protocol SkylabClient {
     func start(user: SkylabUser, completion: (() -> Void)?) -> Void
     func setUser(user: SkylabUser, completion: (() -> Void)?) -> Void
-    func getVariant(_ flagKey: String) -> String?
     func getVariant(_ flagKey: String, fallback: String?) -> String?
+    func getVariantData(_ flagKey: String, fallback: Any?) -> Any?
     func refetchAll(completion: (() -> Void)?) -> Void
     func setIdentityProvider(_ identityProvider: IdentityProvider) -> SkylabClient
+}
+
+public extension SkylabClient {
+    func getVariant(_ flagKey: String, fallback: String? = nil) -> String? {
+        return getVariant(flagKey, fallback: fallback)
+    }
+
+    func getVariantData(_ flagKey: String, fallback: Any? = nil) -> Any? {
+        return getVariantData(flagKey, fallback: fallback)
+    }
 }
 
 let EnrollmentIdKey: String = "com.amplitude.flags.enrollmentId"
@@ -75,7 +85,7 @@ public class SkylabClientImpl : SkylabClient {
                     .replacingOccurrences(of: "/", with: "_")
                     .replacingOccurrences(of: "=", with: "")
 
-                let url = URL(string: "\(self.config.serverUrl)/sdk/variants/\(b64encodedUrl)")!
+                let url = URL(string: "\(self.config.serverUrl)/sdk/vardata/\(b64encodedUrl)")!
                 var request = URLRequest(url: url)
                 request.httpMethod = "GET"
                 request.setValue("Api-Key \(self.apiKey)", forHTTPHeaderField: "Authorization")
@@ -99,10 +109,13 @@ public class SkylabClientImpl : SkylabClient {
 
                         // Serialize the data into an object
                         do {
-                            let flags = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: String] ?? [:]
+                            let flags = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: [String: Any]] ?? [:]
                             self.storage.clear()
                             for (key, value) in flags {
-                                let _ = self.storage.put(key: key, value: value)
+                                let variant = Variant(json: value)
+                                if (variant != nil) {
+                                    let _ = self.storage.put(key: key, value: variant!)
+                                }
                             }
                             self.storage.save()
                             let end = CFAbsoluteTimeGetCurrent()
@@ -121,12 +134,12 @@ public class SkylabClientImpl : SkylabClient {
         }
     }
 
-    public func getVariant(_ flagKey: String) -> String? {
-        return getVariant(flagKey, fallback: nil)
+    public func getVariant(_ flagKey: String, fallback: String?) -> String? {
+        return self.storage.get(key: flagKey)?.key ?? fallback ?? self.config.fallbackVariant?.key
     }
 
-    public func getVariant(_ flagKey: String, fallback: String?) -> String? {
-        return self.storage.get(key: flagKey) ?? fallback ?? self.config.fallbackVariant
+    public func getVariantData(_ flagKey: String, fallback: Any?) -> Any? {
+        return self.storage.get(key: flagKey)?.payload ?? fallback ?? self.config.fallbackVariant?.payload
     }
 
     public func setIdentityProvider(_ identityProvider: IdentityProvider) -> SkylabClient {
