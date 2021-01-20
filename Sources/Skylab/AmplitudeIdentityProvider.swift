@@ -34,7 +34,7 @@ public class AmplitudeIdentityProvider : IdentityProvider {
             return
         }
         let start = CFAbsoluteTimeGetCurrent()
-        while (self.amplitude.getDeviceId() == nil) {
+        while (self.amplitude.getDeviceId() as String? == nil) {
             Thread.sleep(forTimeInterval: 0.02)
         }
         initialized = true
