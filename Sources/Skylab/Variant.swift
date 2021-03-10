@@ -22,14 +22,12 @@ public struct Variant: Codable {
     }
 
     init?(json: [String: Any]) {
-        guard let key = json["key"] as? String,
-              let payload = json["payload"]
-        else {
-            return nil
+        guard let key = json["key"] as? String else {
+            return nil;
         }
 
         self.key = key
-        self.payload = payload
+        self.payload = json["payload"]
     }
 
     public init(from decoder: Decoder) throws {
