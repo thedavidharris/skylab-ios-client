@@ -10,32 +10,32 @@ import Foundation
 public protocol SkylabClient {
     func start(user: SkylabUser, completion: (() -> Void)?) -> Void
     func setUser(user: SkylabUser, completion: (() -> Void)?) -> Void
-    func getVariant(_ flagKey: String, fallback: String?) -> String?
-    func getVariantData(_ flagKey: String, fallback: Any?) -> Any?
+    func getVariant(_ flagKey: String, fallback: Variant?) -> Variant?
+    func getVariant(_ flagKey: String, fallback: String) -> Variant
     func refetchAll(completion: (() -> Void)?) -> Void
-    func setIdentityProvider(_ identityProvider: IdentityProvider) -> SkylabClient
+    func setContextProvider(_ contextProvider: ContextProvider) -> SkylabClient
 }
 
 public extension SkylabClient {
-    func getVariant(_ flagKey: String, fallback: String? = nil) -> String? {
+    func getVariant(_ flagKey: String, fallback: Variant? = nil) -> Variant? {
         return getVariant(flagKey, fallback: fallback)
     }
 
-    func getVariantData(_ flagKey: String, fallback: Any? = nil) -> Any? {
-        return getVariantData(flagKey, fallback: fallback)
+    func getVariant(_ flagKey: String, fallback: String) -> Variant {
+        return getVariant(flagKey, fallback: fallback)
     }
 }
 
 let EnrollmentIdKey: String = "com.amplitude.flags.enrollmentId"
 
-public class SkylabClientImpl : SkylabClient {
+public class DefaultSkylabClient : SkylabClient {
 
     internal let apiKey: String
     internal let storage: Storage
     internal let config: SkylabConfig
     internal var userId: String?
     internal var user: SkylabUser?
-    internal var identityProvider: IdentityProvider?
+    internal var contextProvider: ContextProvider?
     internal var enrollmentId: String?
 
     init(apiKey: String, config: SkylabConfig) {
@@ -44,7 +44,7 @@ public class SkylabClientImpl : SkylabClient {
         self.config = config
         self.userId = nil
         self.user = nil
-        self.identityProvider = nil
+        self.contextProvider = nil
     }
 
 
@@ -63,22 +63,28 @@ public class SkylabClientImpl : SkylabClient {
         self.fetchAll(completion:completion)
     }
 
+    private func addContext(user:SkylabUser?) -> [String:Any] {
+        var userContext:[String:Any] = [:];
+        if (self.contextProvider != nil) {
+            userContext["device_id"] = self.contextProvider?.getDeviceId()
+            userContext["user_id"] = self.contextProvider?.getUserId()
+            userContext["version"] = self.contextProvider?.getVersion()
+            userContext["language"] = self.contextProvider?.getLanguage()
+            userContext["platform"] = self.contextProvider?.getPlatform()
+            userContext["os"] = self.contextProvider?.getOs()
+            userContext["device_manufacturer"] = self.contextProvider?.getDeviceManufacturer()
+            userContext["device_model"] = self.contextProvider?.getDeviceModel()
+        }
+        userContext.merge(user?.toDictionary() ?? [:]) { (_, new) in new }
+        return userContext
+    }
+
     public func fetchAll(completion:  (() -> Void)? = nil) {
         let start = CFAbsoluteTimeGetCurrent()
         DispatchQueue.global(qos: .background).async {
             let session = URLSession.shared
 
-            var userContext = self.user?.toDictionary() ?? [:]
-            if (userContext["id"] == nil) {
-                userContext["id"] = self.enrollmentId
-            }
-            if (self.identityProvider?.getDeviceId() != nil) {
-                userContext["id"] = self.identityProvider?.getDeviceId()
-                userContext["device_id"] = self.identityProvider?.getDeviceId()
-            }
-            if (self.identityProvider?.getUserId() != nil) {
-                userContext["user_id"] = self.identityProvider?.getUserId()
-            }
+            let userContext = self.addContext(user:self.user)
             do {
                 let requestData = try JSONSerialization.data(withJSONObject: userContext, options: [])
                 let b64encodedUrl = requestData.base64EncodedString().replacingOccurrences(of: "+", with: "-")
@@ -134,16 +140,16 @@ public class SkylabClientImpl : SkylabClient {
         }
     }
 
-    public func getVariant(_ flagKey: String, fallback: String?) -> String? {
-        return self.storage.get(key: flagKey)?.key ?? fallback ?? self.config.fallbackVariant?.key
+    public func getVariant(_ flagKey: String, fallback: String) -> Variant {
+        return self.storage.get(key: flagKey) ?? Variant(fallback, payload:nil)
     }
 
-    public func getVariantData(_ flagKey: String, fallback: Any?) -> Any? {
-        return self.storage.get(key: flagKey)?.payload ?? fallback ?? self.config.fallbackVariant?.payload
+    public func getVariant(_ flagKey: String, fallback: Variant?) -> Variant? {
+        return self.storage.get(key: flagKey) ?? fallback
     }
 
-    public func setIdentityProvider(_ identityProvider: IdentityProvider) -> SkylabClient {
-        self.identityProvider = identityProvider
+    public func setContextProvider(_ contextProvider: ContextProvider) -> SkylabClient {
+        self.contextProvider = contextProvider
         return self
     }
 

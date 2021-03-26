@@ -23,7 +23,7 @@ public class Skylab {
         if (instance != nil) {
             return instance!
         }
-        let newInstance: SkylabClient = SkylabClientImpl(apiKey: apiKey, config: config)
+        let newInstance: SkylabClient = DefaultSkylabClient(apiKey: apiKey, config: config)
         instances[config.instanceName] = newInstance
         return newInstance
     }
