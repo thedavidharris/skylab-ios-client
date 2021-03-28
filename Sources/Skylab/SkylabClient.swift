@@ -12,6 +12,7 @@ public protocol SkylabClient {
     func setUser(user: SkylabUser, completion: (() -> Void)?) -> Void
     func getVariant(_ flagKey: String, fallback: Variant?) -> Variant?
     func getVariant(_ flagKey: String, fallback: String) -> Variant
+    func getVariants() -> [String:Variant]
     func refetchAll(completion: (() -> Void)?) -> Void
     func setContextProvider(_ contextProvider: ContextProvider) -> SkylabClient
 }
@@ -145,7 +146,7 @@ public class DefaultSkylabClient : SkylabClient {
     }
 
     public func getVariant(_ flagKey: String, fallback: Variant?) -> Variant? {
-        return self.storage.get(key: flagKey) ?? fallback
+        return self.storage.get(key: flagKey) ?? fallback ?? self.config.initialFlags[flagKey] ?? self.config.fallbackVariant
     }
 
     public func setContextProvider(_ contextProvider: ContextProvider) -> SkylabClient {
