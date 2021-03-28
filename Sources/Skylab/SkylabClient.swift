@@ -149,6 +149,10 @@ public class DefaultSkylabClient : SkylabClient {
         return self.storage.get(key: flagKey) ?? fallback ?? self.config.initialFlags[flagKey] ?? self.config.fallbackVariant
     }
 
+    public func getVariants() -> [String: Variant] {
+        return self.storage.getAll()
+    }
+
     public func setContextProvider(_ contextProvider: ContextProvider) -> SkylabClient {
         self.contextProvider = contextProvider
         return self
