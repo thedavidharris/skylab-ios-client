@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "Skylab"
-  spec.version      = "0.0.3"
+  spec.version      = "1.0.0"
   spec.summary      = "Skylab SDK"
   spec.license      = { :type => "MIT" }
   spec.author       = { "Amplitude" => "skylab@amplitude.com" }
