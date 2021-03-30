@@ -11,7 +11,7 @@ public class Skylab {
     static var instances: [String: SkylabClient] = [:]
 
     public static func getInstance() -> SkylabClient? {
-        return getInstance(AMPSkylabConfigDefaults.InstanceName)
+        return getInstance(SkylabConfig.Defaults.InstanceName)
     }
 
     public static func getInstance(_ name: String) -> SkylabClient? {

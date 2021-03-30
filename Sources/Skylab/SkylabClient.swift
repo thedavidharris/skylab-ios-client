@@ -76,6 +76,7 @@ public class DefaultSkylabClient : SkylabClient {
             userContext["device_manufacturer"] = self.contextProvider?.getDeviceManufacturer()
             userContext["device_model"] = self.contextProvider?.getDeviceModel()
         }
+        userContext["library"] = "\(SkylabConfig.Constants.Library)/\(SkylabConfig.Constants.Version)"
         userContext.merge(user?.toDictionary() ?? [:]) { (_, new) in new }
         return userContext
     }

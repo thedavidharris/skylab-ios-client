@@ -16,12 +16,12 @@ public struct SkylabConfig {
     public let serverUrl: String
 
     public init(
-        debug: Bool = AMPSkylabConfigDefaults.Debug,
-        debugEnrollmentRequests: Bool = AMPSkylabConfigDefaults.DebugEnrollmentRequests,
-        fallbackVariant: Variant? = AMPSkylabConfigDefaults.FallbackVariant,
-        initialFlags: [String: Variant] = AMPSkylabConfigDefaults.InitialFlags,
-        instanceName: String = AMPSkylabConfigDefaults.InstanceName,
-        serverUrl: String = AMPSkylabConfigDefaults.ServerUrl
+        debug: Bool = SkylabConfig.Defaults.Debug,
+        debugEnrollmentRequests: Bool = SkylabConfig.Defaults.DebugEnrollmentRequests,
+        fallbackVariant: Variant? = SkylabConfig.Defaults.FallbackVariant,
+        initialFlags: [String: Variant] = SkylabConfig.Defaults.InitialFlags,
+        instanceName: String = SkylabConfig.Defaults.InstanceName,
+        serverUrl: String = SkylabConfig.Defaults.ServerUrl
     ) {
         self.debug = debug
         self.debugEnrollmentRequests = debugEnrollmentRequests
@@ -30,13 +30,18 @@ public struct SkylabConfig {
         self.instanceName = instanceName
         self.serverUrl = serverUrl
     }
-}
 
-public struct AMPSkylabConfigDefaults {
-    public static let Debug: Bool = false
-    public static let DebugEnrollmentRequests: Bool = false
-    public static let FallbackVariant: Variant? = nil
-    public static let InitialFlags: [String: Variant] = [:]
-    public static let InstanceName: String = ""
-    public static let ServerUrl: String = "https://api.lab.amplitude.com"
+    public struct Defaults {
+        public static let Debug: Bool = false
+        public static let DebugEnrollmentRequests: Bool = false
+        public static let FallbackVariant: Variant? = nil
+        public static let InitialFlags: [String: Variant] = [:]
+        public static let InstanceName: String = ""
+        public static let ServerUrl: String = "https://api.lab.amplitude.com"
+    }
+
+    public struct Constants {
+        public static let Version: String = "1.0.0"
+        public static let Library: String = "skylab-ios"
+    }
 }
