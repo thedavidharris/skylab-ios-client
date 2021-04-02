@@ -23,6 +23,7 @@ public struct SkylabUser {
     public let deviceManufacturer: String?
     public let deviceModel: String?
     public let carrier: String?
+    public let library: String?
     public let userProperties: [String: String]?
 
     public init(
@@ -41,6 +42,7 @@ public struct SkylabUser {
         deviceManufacturer: String? = nil,
         deviceModel: String? = nil,
         carrier: String? = nil,
+        library: String? = nil,
         userProperties: [String: String]? = nil
     ) {
         self.deviceId = deviceId
@@ -58,6 +60,7 @@ public struct SkylabUser {
         self.deviceManufacturer = deviceManufacturer
         self.deviceModel = deviceModel
         self.carrier = carrier
+        self.library = library
         self.userProperties = userProperties
     }
 
@@ -78,6 +81,7 @@ public struct SkylabUser {
         data["device_manufacturer"] = self.deviceManufacturer
         data["device_model"] = self.deviceModel
         data["carrier"] = self.carrier
+        data["library"] = self.library
         data["user_properties"] = self.userProperties
         return data
     }
