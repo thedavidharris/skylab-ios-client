@@ -41,7 +41,7 @@ public struct SkylabConfig {
     }
 
     public struct Constants {
-        public static let Version: String = "1.0.1"
+        public static let Version: String = "1.0.2"
         public static let Library: String = "skylab-ios"
     }
 }
