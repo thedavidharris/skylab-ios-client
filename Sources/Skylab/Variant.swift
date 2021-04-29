@@ -22,12 +22,12 @@ public struct Variant: Codable {
     }
 
     init?(json: [String: Any]) {
-        let key = json["key"] as? String;
-        let value = json["value"] as? String;
+        let key = json["key"] as? String
+        let value = json["value"] as? String
         if (key == nil && value == nil) {
-            return nil;
+            return nil
         }
-        self.value = (value ?? key)!;
+        self.value = (value ?? key)!
         self.payload = json["payload"]
     }
 
@@ -42,7 +42,7 @@ public struct Variant: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
-        var data: Data? = nil;
+        var data: Data? = nil
         if (payload != nil) {
             let v:[String:Any] = ["payload": payload!]
             data = try JSONSerialization.data(withJSONObject: v, options: [])

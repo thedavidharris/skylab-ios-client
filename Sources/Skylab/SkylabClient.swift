@@ -65,7 +65,7 @@ public class DefaultSkylabClient : SkylabClient {
     }
 
     private func addContext(user:SkylabUser?) -> [String:Any] {
-        var userContext:[String:Any] = [:];
+        var userContext:[String:Any] = [:]
         if (self.contextProvider != nil) {
             userContext["device_id"] = self.contextProvider?.getDeviceId()
             userContext["user_id"] = self.contextProvider?.getUserId()
@@ -166,7 +166,7 @@ public class DefaultSkylabClient : SkylabClient {
     }
 
     func loadEnrollmentId() -> Void {
-        enrollmentId = UserDefaults.standard.string(forKey: EnrollmentIdKey);
+        enrollmentId = UserDefaults.standard.string(forKey: EnrollmentIdKey)
         if (enrollmentId == nil) {
             enrollmentId = generateEnrollmentId()
             print("generated \(enrollmentId!)")

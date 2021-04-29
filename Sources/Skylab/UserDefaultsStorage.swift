@@ -9,7 +9,7 @@ import Foundation
 
 class UserDefaultsStorage: Storage {
     let userDefaults = UserDefaults.standard
-    let sharedPrefsKey: String;
+    let sharedPrefsKey: String
     let sharedPrefsPrefix = "com.amplitude.flags.cached."
     var map: [String:Variant] = [:]
 
