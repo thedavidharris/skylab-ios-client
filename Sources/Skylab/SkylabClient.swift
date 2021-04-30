@@ -87,6 +87,13 @@ public class DefaultSkylabClient : SkylabClient {
             let session = URLSession.shared
 
             let userContext = self.addContext(user:self.user)
+            
+            let userId = userContext["user_id"]
+            let deviceId = userContext["device_id"]
+            if userId == nil && deviceId == nil {
+                print("[Skylab] WARN: user id and device id are null; amplitude will not be able to resolve identity")
+            }
+            
             do {
                 let requestData = try JSONSerialization.data(withJSONObject: userContext, options: [])
                 let b64encodedUrl = requestData.base64EncodedString().replacingOccurrences(of: "+", with: "-")
