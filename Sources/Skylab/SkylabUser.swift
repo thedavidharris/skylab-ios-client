@@ -7,61 +7,182 @@
 
 import Foundation
 
-public struct SkylabUser {
-    public let deviceId: String?
-    public let userId: String?
-    public let version: String?
-    public let country: String?
-    public let region: String?
-    public let dma: String?
-    public let city: String?
-    public let language: String?
-    public let platform: String?
-    public let os: String?
-    public let deviceFamily: String?
-    public let deviceType: String?
-    public let deviceManufacturer: String?
-    public let deviceModel: String?
-    public let carrier: String?
-    public let library: String?
-    public let userProperties: [String: String]?
+public struct SkylabUser: Equatable {
 
-    public init(
-        deviceId: String? = nil,
-        userId: String? = nil,
-        version: String? = nil,
-        country: String? = nil,
-        region: String? = nil,
-        dma: String? = nil,
-        city: String? = nil,
-        language: String? = nil,
-        platform: String? = nil,
-        os: String? = nil,
-        deviceFamily: String? = nil,
-        deviceType: String? = nil,
-        deviceManufacturer: String? = nil,
-        deviceModel: String? = nil,
-        carrier: String? = nil,
-        library: String? = nil,
-        userProperties: [String: String]? = nil
-    ) {
-        self.deviceId = deviceId
-        self.userId = userId
-        self.version = version
-        self.country = country
-        self.region = region
-        self.dma = dma
-        self.city = city
-        self.language = language
-        self.platform = platform
-        self.os = os
-        self.deviceFamily = deviceFamily
-        self.deviceType = deviceType
-        self.deviceManufacturer = deviceManufacturer
-        self.deviceModel = deviceModel
-        self.carrier = carrier
-        self.library = library
-        self.userProperties = userProperties
+    public private(set) var deviceId: String?
+    public private(set) var userId: String?
+    public private(set) var version: String?
+    public private(set) var country: String?
+    public private(set) var region: String?
+    public private(set) var dma: String?
+    public private(set) var city: String?
+    public private(set) var language: String?
+    public private(set) var platform: String?
+    public private(set) var os: String?
+    public private(set) var deviceFamily: String?
+    public private(set) var deviceType: String?
+    public private(set) var deviceManufacturer: String?
+    public private(set) var deviceModel: String?
+    public private(set) var carrier: String?
+    public private(set) var library: String?
+    public private(set) var userProperties: [String: String]?
+
+    public class Builder {
+
+        private var user = SkylabUser()
+
+        public func setUserId(_ userId: String?) -> Builder {
+            self.user.userId = userId
+            return self
+        }
+
+        public func setDeviceId(_ deviceId: String?) -> Builder {
+            self.user.deviceId = deviceId
+            return self
+        }
+
+        public func setCountry(_ country: String?) -> Builder {
+            self.user.country = country
+            return self
+        }
+
+        public func setRegion(_ region: String?) -> Builder {
+            self.user.region = region
+            return self
+        }
+
+        public func setCity(_ city: String?) -> Builder {
+            self.user.city = city
+            return self
+        }
+
+        public func setLanguage(_ language: String?) -> Builder {
+            self.user.language = language
+            return self
+        }
+
+        public func setPlatform(_ platform: String?) -> Builder {
+            self.user.platform = platform
+            return self
+        }
+
+        public func setVersion(_ version: String?) -> Builder {
+            self.user.version = version
+            return self
+        }
+
+        public func setDma(_ dma: String?) -> Builder {
+            self.user.dma = dma
+            return self
+        }
+
+        public func setOs(_ os: String?) -> Builder {
+            self.user.os = os
+            return self
+        }
+
+        public func setDeviceFamily(_ deviceFamily: String?) -> Builder {
+            self.user.deviceFamily = deviceFamily
+            return self
+        }
+
+        public func setDeviceType(_ deviceType: String?) -> Builder {
+            self.user.deviceType = deviceType
+            return self
+        }
+
+        public func setDeviceManufacturer(_ deviceManufacturer: String?) -> Builder {
+            self.user.deviceManufacturer = deviceManufacturer
+            return self
+        }
+
+        public func setDeviceModel(_ deviceModel: String?) -> Builder {
+            self.user.deviceModel = deviceModel
+            return self
+        }
+
+        public func setCarrier(_ carrier: String?) -> Builder {
+            self.user.carrier = carrier
+            return self
+        }
+
+        public func setLibrary(_ library: String?) -> Builder {
+            self.user.library = library
+            return self
+        }
+
+        public func setUserProperties(_ userProperties: [String: String]?) -> Builder {
+            self.user.userProperties = userProperties
+            return self
+        }
+
+        public func setUserProperty(_ property: String, value: String) -> Builder {
+            guard var userProperties = user.userProperties else {
+                self.user.userProperties = [property: value]
+                return self
+            }
+            userProperties[property] = value
+            return self
+        }
+
+        public func copyUser(_ user: SkylabUser) -> Builder {
+            if let userId = user.userId {
+                self.user.userId = userId
+            }
+            if let deviceId = user.deviceId {
+                self.user.deviceId = deviceId
+            }
+            if let country = user.country {
+                self.user.country = country
+            }
+            if let region = user.region {
+                self.user.region = region
+            }
+            if let city = user.city {
+                self.user.city = city
+            }
+            if let language = user.language {
+                self.user.language = language
+            }
+            if let platform = user.platform {
+                self.user.platform = platform
+            }
+            if let version = user.version {
+                self.user.version = version
+            }
+            if let os = user.os {
+                self.user.os = os
+            }
+            if let dma = user.dma {
+                self.user.dma = dma
+            }
+            if let deviceFamily = user.deviceFamily {
+                self.user.deviceFamily = deviceFamily
+            }
+            if let deviceType = user.deviceType {
+                self.user.deviceType = deviceType
+            }
+            if let deviceManufacturer = user.deviceManufacturer {
+                self.user.deviceManufacturer = deviceManufacturer
+            }
+            if let deviceModel = user.deviceModel {
+                self.user.deviceModel = deviceModel
+            }
+            if let carrier = user.carrier {
+                self.user.carrier = carrier
+            }
+            if let library = user.library {
+                self.user.library = library
+            }
+            if let userProperties = user.userProperties {
+                self.user.userProperties = userProperties
+            }
+            return self
+        }
+
+        public func build() -> SkylabUser {
+            return user
+        }
     }
 
     public func toDictionary() -> [String:Any] {

@@ -10,6 +10,8 @@ import Foundation
 public protocol SkylabClient {
     func start(user: SkylabUser, completion: (() -> Void)?) -> Void
     func setUser(user: SkylabUser, completion: (() -> Void)?) -> Void
+    func getUser() -> SkylabUser?
+    func getUserWithContext() -> SkylabUser
     func getVariant(_ flagKey: String, fallback: Variant?) -> Variant?
     func getVariant(_ flagKey: String, fallback: String) -> Variant
     func getVariants() -> [String:Variant]
@@ -45,7 +47,6 @@ public class DefaultSkylabClient : SkylabClient {
         self.contextProvider = nil
     }
 
-
     public func start(user: SkylabUser, completion: (() -> Void)? = nil) -> Void {
         self.user = user
         self.loadFromStorage()
@@ -53,46 +54,56 @@ public class DefaultSkylabClient : SkylabClient {
     }
 
     public func setUser(user: SkylabUser, completion: (() -> Void)? = nil) -> Void {
-        self.user = user
-        self.fetchAll(completion: completion)
+        if self.user != user {
+            self.user = user
+            self.fetchAll(completion: completion)
+        } else {
+            completion?()
+        }
+    }
+
+    public func getUser() -> SkylabUser? {
+        return self.user
+    }
+
+    public func getUserWithContext() -> SkylabUser {
+        let builder = SkylabUser.Builder()
+        if self.contextProvider != nil {
+            if let deviceId = self.contextProvider?.getDeviceId(), deviceId != "" {
+                _ = builder.setDeviceId(deviceId)
+            }
+            if let userId = self.contextProvider?.getUserId(), userId != "" {
+                _ = builder.setUserId(userId)
+            }
+            _ = builder.setPlatform(self.contextProvider?.getPlatform())
+                .setVersion(self.contextProvider?.getVersion())
+                .setLanguage(self.contextProvider?.getLanguage())
+                .setOs(self.contextProvider?.getOs())
+                .setDeviceManufacturer(self.contextProvider?.getDeviceManufacturer())
+                .setDeviceModel(self.contextProvider?.getDeviceModel())
+        }
+        return builder.setLibrary("\(SkylabConfig.Constants.Library)/\(SkylabConfig.Constants.Version)")
+            .copyUser(self.user ?? SkylabUser())
+            .build()
     }
 
     public func refetchAll(completion: (() -> Void)? = nil) -> Void {
         self.fetchAll(completion:completion)
     }
 
-    private func addContext(user:SkylabUser?) -> [String:Any] {
-        var userContext:[String:Any] = [:]
-        if (self.contextProvider != nil) {
-            userContext["device_id"] = self.contextProvider?.getDeviceId()
-            userContext["user_id"] = self.contextProvider?.getUserId()
-            userContext["version"] = self.contextProvider?.getVersion()
-            userContext["language"] = self.contextProvider?.getLanguage()
-            userContext["platform"] = self.contextProvider?.getPlatform()
-            userContext["os"] = self.contextProvider?.getOs()
-            userContext["device_manufacturer"] = self.contextProvider?.getDeviceManufacturer()
-            userContext["device_model"] = self.contextProvider?.getDeviceModel()
-        }
-        userContext["library"] = "\(SkylabConfig.Constants.Library)/\(SkylabConfig.Constants.Version)"
-        userContext.merge(user?.toDictionary() ?? [:]) { (_, new) in new }
-        return userContext
-    }
-
     public func fetchAll(completion:  (() -> Void)? = nil) {
         let start = CFAbsoluteTimeGetCurrent()
         DispatchQueue.global(qos: .background).async {
             let session = URLSession.shared
-
-            let userContext = self.addContext(user:self.user)
-            
-            let userId = userContext["user_id"]
-            let deviceId = userContext["device_id"]
+            let userContext = self.getUserWithContext()
+            let userId = userContext.userId
+            let deviceId = userContext.deviceId
             if userId == nil && deviceId == nil {
                 print("[Skylab] WARN: user id and device id are null; amplitude will not be able to resolve identity")
             }
-            
+            let userContextDictionary = userContext.toDictionary()
             do {
-                let requestData = try JSONSerialization.data(withJSONObject: userContext, options: [])
+                let requestData = try JSONSerialization.data(withJSONObject: userContextDictionary, options: [])
                 let b64encodedUrl = requestData.base64EncodedString().replacingOccurrences(of: "+", with: "-")
                     .replacingOccurrences(of: "/", with: "_")
                     .replacingOccurrences(of: "=", with: "")
