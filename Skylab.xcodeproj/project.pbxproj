@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		201A78DF2643AB6100663DCB /* SkylabUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201A78DE2643AB6100663DCB /* SkylabUserTests.swift */; };
+		70C6110D26613AA700D6877B /* Amplitude.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C6110C26613AA700D6877B /* Amplitude.xcframework */; };
+		70C6110E26613AA700D6877B /* Amplitude.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 70C6110C26613AA700D6877B /* Amplitude.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E9030DB525B8AFC600BA1BA8 /* Variant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9030DB425B8AFC600BA1BA8 /* Variant.swift */; };
 		E914961925796DA800C64B38 /* Skylab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E914960F25796DA800C64B38 /* Skylab.framework */; };
 		E914961E25796DA800C64B38 /* SkylabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E914961D25796DA800C64B38 /* SkylabTests.swift */; };
@@ -21,7 +23,6 @@
 		E9C5D9212579718E00867574 /* InMemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C5D9182579718E00867574 /* InMemoryStorage.swift */; };
 		E9C5D9222579718E00867574 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C5D9192579718E00867574 /* Storage.swift */; };
 		E9C5D9232579718E00867574 /* ContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C5D91A2579718E00867574 /* ContextProvider.swift */; };
-		E9DF9D172610535300A781EB /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = E9DF9D162610535300A781EB /* Amplitude */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,8 +35,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		70C6110F26613AA700D6877B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				70C6110E26613AA700D6877B /* Amplitude.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		201A78DE2643AB6100663DCB /* SkylabUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylabUserTests.swift; sourceTree = "<group>"; };
+		70C6110C26613AA700D6877B /* Amplitude.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Amplitude.xcframework; path = Carthage/Build/Amplitude.xcframework; sourceTree = "<group>"; };
 		E9030DB425B8AFC600BA1BA8 /* Variant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variant.swift; sourceTree = "<group>"; };
 		E914960F25796DA800C64B38 /* Skylab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Skylab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E914961225796DA800C64B38 /* Skylab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Skylab.h; sourceTree = "<group>"; };
@@ -43,7 +59,6 @@
 		E914961825796DA800C64B38 /* SkylabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkylabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E914961D25796DA800C64B38 /* SkylabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylabTests.swift; sourceTree = "<group>"; };
 		E914961F25796DA800C64B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9945CC325797C030066398B /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		E9C5D9122579718E00867574 /* AmplitudeContextProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeContextProvider.swift; sourceTree = "<group>"; };
 		E9C5D9132579718E00867574 /* SkylabClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkylabClient.swift; sourceTree = "<group>"; };
 		E9C5D9142579718E00867574 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
@@ -60,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9DF9D172610535300A781EB /* Amplitude in Frameworks */,
+				70C6110D26613AA700D6877B /* Amplitude.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +93,7 @@
 		201A78522641D0EC00663DCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				70C6110C26613AA700D6877B /* Amplitude.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -85,7 +101,6 @@
 		E914960525796DA800C64B38 = {
 			isa = PBXGroup;
 			children = (
-				E9945CC325797C030066398B /* Package.swift */,
 				E9C5D928257971B900867574 /* Sources */,
 				E9C5D929257971BE00867574 /* Tests */,
 				E914961025796DA800C64B38 /* Products */,
@@ -169,6 +184,7 @@
 				E914960B25796DA800C64B38 /* Sources */,
 				E914960C25796DA800C64B38 /* Frameworks */,
 				E914960D25796DA800C64B38 /* Resources */,
+				70C6110F26613AA700D6877B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -176,7 +192,6 @@
 			);
 			name = Skylab;
 			packageProductDependencies = (
-				E9DF9D162610535300A781EB /* Amplitude */,
 			);
 			productName = Skylab;
 			productReference = E914960F25796DA800C64B38 /* Skylab.framework */;
@@ -228,7 +243,6 @@
 			);
 			mainGroup = E914960525796DA800C64B38;
 			packageReferences = (
-				E9DF9D152610535300A781EB /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 			);
 			productRefGroup = E914961025796DA800C64B38 /* Products */;
 			projectDirPath = "";
@@ -347,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -405,7 +419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -440,7 +454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.amplitude.Skylab;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchos watchsimulator appletvos appletvsimulator macosx";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4,6";
@@ -472,7 +486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.amplitude.Skylab;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchos watchsimulator appletvos appletvsimulator macosx";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4,6";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -553,25 +567,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E9DF9D152610535300A781EB /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/amplitude/Amplitude-iOS.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E9DF9D162610535300A781EB /* Amplitude */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9DF9D152610535300A781EB /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
-			productName = Amplitude;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E914960625796DA800C64B38 /* Project object */;
 }
